@@ -19,20 +19,18 @@ function Signup() {
   const [loading, setLoading] = useState(false);
 
   const onSignup = async (e) => {
-    e.preventDefault(); // 🔥 VERY IMPORTANT
+    e.preventDefault(); 
 
     try {
       setLoading(true);
-
       const res = await axios.post("/api/users/signup", user);
-
-      toast.success("Signup successful 🎉");
+      toast.success("Signup successful 🎉",res);
       router.push("/login");
 
     } catch (error) {
       const message =
-        error?.response?.data?.message || "Signup failed";
-      toast.error(message);
+      error?.response?.data?.message || "Signup failed";
+      toast.error("User Already existed with this email or username ",message);
     } finally {
       setLoading(false);
     }
