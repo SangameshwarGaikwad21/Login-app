@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function ProfilePage() {
   const router = useRouter();
-
+  const[username,setUsername]=useState("")
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,6 +18,7 @@ export default function ProfilePage() {
 
       const res = await axios.get("/api/users/me");
       setUserId(res.data.data._id);
+      setUsername(res.data)
 
     } catch (error) {
       const message =
@@ -39,7 +40,7 @@ export default function ProfilePage() {
     }
   };
 
-  // 🔥 Auto-fetch user on page load
+  
   useEffect(() => {
     getUserDetails();
   }, []);
@@ -58,8 +59,9 @@ export default function ProfilePage() {
           {userId}
         </Link>
       ) : (
-        <p>No user data</p>
+        <p>{username}</p>
       )}
+      
 
       <button
         onClick={logout}
