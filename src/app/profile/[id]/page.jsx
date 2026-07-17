@@ -5,7 +5,7 @@ export default function UserProfile({id,username}) {
             <hr />
             <p className="text-4xl">Profile page 
             <span className=" p-2 ml-2 rounded bg-orange-500 text-black">{id}</span>
-            <span className=" p-2 ml-2 rounded bg-orange-500 text-black">{username}</span>
+            
         </p>
 
     </div>
