@@ -45,80 +45,96 @@ function Signup() {
   }, [user]);
 
   return (
-    <div className="bg-gray-900 flex justify-center items-center min-h-screen">
-      <div className="bg-gray-600 rounded-lg p-8 shadow-lg max-w-sm w-full">
-        <h2 className="text-center text-3xl text-white mb-6 font-bold">
-          {loading ? "Processing..." : "Signup"}
-        </h2>
+  <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#020617] px-4">
+    {/* Background Glow */}
+    <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-[120px]" />
+    <div className="absolute bottom-10 right-10 h-80 w-80 rounded-full bg-blue-600/20 blur-[140px]" />
 
-        <form onSubmit={onSignup}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Username
-            </label>
-            <input
-              value={user.username}
-              onChange={(e) =>
-                setUser({ ...user, username: e.target.value })
-              }
-              placeholder="username"
-              className="w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="text"
-            />
-          </div>
+    <div className="relative z-10 w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl">
+      <div className="mb-8 text-center">
+        <h1 className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent">
+          Create Account
+        </h1>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email
-            </label>
-            <input
-              value={user.email}
-              onChange={(e) =>
-                setUser({ ...user, email: e.target.value })
-              }
-              placeholder="email"
-              className="w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="email"
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
-            </label>
-            <input
-              value={user.password}
-              onChange={(e) =>
-                setUser({ ...user, password: e.target.value })
-              }
-              placeholder="password"
-              className="w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="password"
-            />
-          </div>
-
-          <button
-            disabled={buttonDisabled || loading}
-            className={`rounded-md py-3 w-full text-white transition ${
-              buttonDisabled || loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-yellow-500 hover:bg-yellow-600"
-            }`}
-            type="submit"
-          >
-            {loading ? "Signing up..." : "Signup"}
-          </button>
-
-          <div className="text-center mt-4 text-sm text-gray-200">
-            Already have an account?{" "}
-            <Link href="/login" className="text-yellow-400 underline">
-              Login
-            </Link>
-          </div>
-        </form>
+        <p className="mt-3 text-slate-400">
+          Join us and start your journey 🚀
+        </p>
       </div>
+
+      <form onSubmit={onSignup} className="space-y-5">
+        <div>
+          <label className="mb-2 block text-sm text-slate-300">
+            Username
+          </label>
+
+          <input
+            type="text"
+            placeholder="Enter username"
+            value={user.username}
+            onChange={(e) =>
+              setUser({ ...user, username: e.target.value })
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/40"
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm text-slate-300">
+            Email
+          </label>
+
+          <input
+            type="email"
+            placeholder="Enter email"
+            value={user.email}
+            onChange={(e) =>
+              setUser({ ...user, email: e.target.value })
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/40"
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm text-slate-300">
+            Password
+          </label>
+
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={user.password}
+            onChange={(e) =>
+              setUser({ ...user, password: e.target.value })
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/40"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={buttonDisabled || loading}
+          className={`w-full rounded-xl py-3 font-semibold text-white transition-all ${
+            buttonDisabled || loading
+              ? "cursor-not-allowed bg-slate-700"
+              : "bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 hover:scale-[1.02]"
+          }`}
+        >
+          {loading ? "Creating Account..." : "Create Account"}
+        </button>
+
+        <p className="text-center text-sm text-slate-400">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-medium text-cyan-400 hover:text-cyan-300"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
     </div>
-  );
+  </div>
+);
 }
 
 export default Signup;

@@ -42,65 +42,107 @@ function Login() {
   }, [user]);
 
   return (
-    <div className="bg-gray-900 flex justify-center items-center min-h-screen">
-      <div className="bg-gray-600 rounded-lg p-8 shadow-lg max-w-sm w-full">
-        <h2 className="text-center text-3xl text-white mb-6 font-bold">
-          {loading ? "Processing..." : "Login"}
-        </h2>
+  <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#020617] px-4">
+    {/* Background Glow */}
+    <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-[120px]" />
+    <div className="absolute bottom-10 right-10 h-80 w-80 rounded-full bg-blue-600/20 blur-[140px]" />
 
-        <form onSubmit={onLogin}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email
-            </label>
-            <input
-              value={user.email}
-              onChange={(e) =>
-                setUser({ ...user, email: e.target.value })
-              }
-              placeholder="email"
-              className="w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="email"
-            />
-          </div>
+    {/* Login Card */}
+    <div className="relative z-10 w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl">
+      <div className="mb-8 text-center">
+        <h1 className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent">
+          Welcome Back
+        </h1>
 
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
-            </label>
-            <input
-              value={user.password}
-              onChange={(e) =>
-                setUser({ ...user, password: e.target.value })
-              }
-              placeholder="password"
-              className="w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="password"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={buttonDisabled || loading}
-            className={`rounded-md py-3 w-full text-white transition ${
-              buttonDisabled || loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-yellow-500 hover:bg-yellow-600"
-            }`}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-
-          <div className="text-center mt-4 text-sm text-gray-200">
-            Don’t have an account?{" "}
-            <Link href="/signup" className="text-yellow-400 underline">
-              Signup
-            </Link>
-          </div>
-        </form>
+        <p className="mt-3 text-slate-400">
+          Login to continue your journey 🚀
+        </p>
       </div>
+
+      <form onSubmit={onLogin} className="space-y-5">
+        {/* Email */}
+        <div>
+          <label className="mb-2 block text-sm text-slate-300">
+            Email
+          </label>
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={user.email}
+            onChange={(e) =>
+              setUser({
+                ...user,
+                email: e.target.value,
+              })
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/40"
+          />
+        </div>
+
+        {/* Password */}
+        <div>
+          <label className="mb-2 block text-sm text-slate-300">
+            Password
+          </label>
+
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={user.password}
+            onChange={(e) =>
+              setUser({
+                ...user,
+                password: e.target.value,
+              })
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition-all focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/40"
+          />
+        </div>
+
+        {/* Forgot Password */}
+        <div className="flex justify-end">
+          <Link
+            href="/forgot-password"
+            className="text-sm text-cyan-400 hover:text-cyan-300"
+          >
+            Forgot Password?
+          </Link>
+        </div>
+
+        {/* Login Button */}
+        <button
+          type="submit"
+          disabled={buttonDisabled || loading}
+          className={`w-full rounded-xl py-3 font-semibold text-white transition-all duration-300 ${
+            buttonDisabled || loading
+              ? "cursor-not-allowed bg-slate-700"
+              : "bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 hover:scale-[1.02] hover:shadow-cyan-500/50"
+          }`}
+        >
+          {loading ? "Logging In..." : "Login"}
+        </button>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-slate-700" />
+          <span className="text-sm text-slate-500">OR</span>
+          <div className="h-px flex-1 bg-slate-700" />
+        </div>
+        {/* Signup */}
+        <p className="text-center text-sm text-slate-400">
+          Don't have an account?{" "}
+          <Link
+            href="/signup"
+            className="font-medium text-cyan-400 hover:text-cyan-300"
+          >
+            Create Account
+          </Link>
+        </p>
+      </form>
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;
